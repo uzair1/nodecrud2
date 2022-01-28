@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+
+    <input type="text" id='input1'>
+    <button onclick="newval()">Add</button>
+    <br><br><br>
+    <button onclick="fetchall()">Fetch All Records</button>
+
+    <h1 id='messege'></h1>
+
+
+    <script>
+        function newval() {
+
+            var newvalue = document.getElementById('input1').value
+
+            //   console.log(newvalue);
+
+            axios.post('http://localhost:4000/add', {
+
+                text: newvalue
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        }
+
+        function fetchall() {
+
+            var messege = document.getElementById('messege')
+
+            //            console.log(newvalue);
+
+            axios.get('http://localhost:4000/fetchall')
+
+                .then(function (response) {
+                    let values = response.data;
+            //        for (i = 0; i < response.lenght; i++) {
+                        messege.innerText = values.data;
+            //        }
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        }
+
+    </script>
+</body>
+
+</html>
