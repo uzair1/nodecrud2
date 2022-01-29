@@ -16,8 +16,8 @@
     <button onclick="newval()">Add</button>
     <br><br><br>
     <button onclick="fetchall()">Fetch All Records</button>
-
-    <h1 id='messege'></h1>
+    <br><br>
+    <div id='table'></div>
 
 
     <script>
@@ -25,9 +25,7 @@
 
             var newvalue = document.getElementById('input1').value
 
-            //   console.log(newvalue);
-
-            axios.post('https://nodecrud2.herokuapp.com/add', {
+            axios.post('https://nodecrud2.heroku.com/add', {
 
                 text: newvalue
             })
@@ -42,17 +40,21 @@
 
         function fetchall() {
 
-            var messege = document.getElementById('messege')
+            var html = "<table border='1|1'>";
 
-            //            console.log(newvalue);
-
-            axios.get('https://nodecrud2.herokuapp.com/fetchall')
+            axios.get('https://nodecrud2.heroku.com/fetchall')
 
                 .then(function (response) {
-                    let values = response.data;
-            //        for (i = 0; i < response.lenght; i++) {
-                        messege.innerText = values.data;
-            //        }
+
+                    for (i = 0; i < response.data.length; i++) {
+
+                        html += "<tr>";
+                        html += "<td>" + (i + 1) + "</td>";
+                        html += "<td>" + JSON.stringify(response.data[i].text) + "</td>";
+                        html += "</tr>";
+                    }
+
+                    document.getElementById("table").innerHTML = html;
                     console.log(response.data);
                 })
                 .catch(function (error) {
