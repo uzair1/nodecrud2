@@ -25,7 +25,7 @@
 
             var newvalue = document.getElementById('input1').value
 
-            axios.post('https://nodecrud2.heroku.com/add', {
+            axios.post('https://nodecrud2.herokuapp.com/add', {
 
                 text: newvalue
             })
@@ -42,7 +42,7 @@
 
             var html = "<table border='1|1'>";
 
-            axios.get('https://nodecrud2.heroku.com/fetchall')
+            axios.get('https://nodecrud2.herokuapp.com/fetchall')
 
                 .then(function (response) {
 
