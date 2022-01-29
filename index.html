@@ -27,7 +27,7 @@
 
             //   console.log(newvalue);
 
-            axios.post('http://nodecrud2.herokuapp.com/add', {
+            axios.post('https://nodecrud2.herokuapp.com/add', {
 
                 text: newvalue
             })
@@ -46,7 +46,7 @@
 
             //            console.log(newvalue);
 
-            axios.get('http://nodecrud2.herokuapp.com/fetchall')
+            axios.get('https://nodecrud2.herokuapp.com/fetchall')
 
                 .then(function (response) {
                     let values = response.data;
